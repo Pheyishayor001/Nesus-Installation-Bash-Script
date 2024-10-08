@@ -11,19 +11,7 @@ else
     echo "Java is not installed. Proceeding with download and setup."
 
     # Download Java
-    wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
-
-    # Extract the tar file
-    sudo tar -xvf jdk-17_linux-x64_bin.tar.gz -C /opt
-
-    # Remove the downloaded tar file to clean up
-    rm jdk-17_linux-x64_bin.tar.gz
-
-    # Remove any existing java link
-    sudo rm -f /usr/bin/java
-
-    # Create a symbolic link to the new Java installation
-    sudo ln -s /opt/jdk-17*/bin/java /usr/bin/java
+    sudo yum install java-1.8.0-openjdk -y || { echo "Failed to install Java"; exit 1}
 
     echo "Java installation completed."
 fi
@@ -47,9 +35,6 @@ if [ -d "$NEXUS_DIR" ]; then
     echo "Nexus is already installed. Skipping download and setup."
 else
     echo "Nexus is not installed. Proceeding with download and setup."
-
-    # Change directory to /opt
-    cd /opt || { echo "Failed to change directory to /opt"; exit 1; }
 
     # Download Nexus
     echo "Downloading Nexus"
@@ -94,9 +79,9 @@ Restart=on-abort
 WantedBy=multi-user.target" | sudo tee /etc/systemd/system/nexus.service > /dev/null || { echo "Failed to create Nexus service file"; exit 1; }
 
 echo "Starting and Enabling Nexus Service"
- sudo systemctl daemon-reload || { echo "Failed to reload systemd"; exit 1; }
- sudo systemctl start nexus || { echo "Failed to start Nexus"; exit 1; }
-sudo systemctl enable nexus || { echo "Failed to enable Nexus"; exit 1; }
-#sh ~/nexus/bin/nexus start || {echo "Failed to start Nexus"; exit 1;}
+# sudo systemctl daemon-reload || { echo "Failed to reload systemd"; exit 1; }
+# sudo systemctl start nexus || { echo "Failed to start Nexus"; exit 1; }
+#sudo systemctl enable nexus || { echo "Failed to enable Nexus"; exit 1; }
+sh ~/nexus/bin/nexus start || {echo "Failed to start Nexus"; exit 1;}
 
 echo "Nexus installation and setup completed successfully!"
