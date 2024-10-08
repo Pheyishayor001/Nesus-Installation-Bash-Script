@@ -4,7 +4,6 @@ echo "Updating system packages"
 sudo yum update -y || { echo "Failed to update packages"; exit 1; }     
 
 echo "Installing Java"
-# sudo yum install java-1.8.0-openjdk -y || { echo "Failed to install Java"; exit 1; }
 wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
 if command -v java &> /dev/null; then
     echo "Java is already installed. Skipping download and setup."      
@@ -112,10 +111,6 @@ Restart=on-abort
 WantedBy=multi-user.target" | sudo tee /etc/systemd/system/nexus.service > /dev/null || { echo "Failed to create Nexus service file"; exit 1; } 
 
 echo "Starting and Enabling Nexus Service"
-# sudo systemctl daemon-reload || { echo "Failed to reload systemd"; exit 1; }
-# sudo systemctl start nexus || { echo "Failed to start Nexus"; exit 1; }
-
-# sudo systemctl enable nexus || { echo "Failed to enable Nexus"; exit 1; }
 sudo chmod +x /opt/nexus/bin/nexus
 sh /opt/nexus/bin/nexus start || { echo "Failed to start Nexus"; exit 1; }   
 
