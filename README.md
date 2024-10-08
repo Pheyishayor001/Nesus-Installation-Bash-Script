@@ -70,7 +70,7 @@ sudo ./Nexus-Installation-Bash-Script/Ubuntu.sh
 
 After installation, verify that Nexus is running by checking its status:
 
-/opt/nexus/bin/nexus status
+sudo /opt/nexus/bin/nexus status
 
 If the service is active, ensure **port 8081** is open in your security group. You can then access Nexus in your web browser at:
 
