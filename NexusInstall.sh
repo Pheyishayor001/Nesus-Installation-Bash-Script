@@ -14,6 +14,7 @@ else
     # Download Java
     sudo yum install java-1.8.0-openjdk -y || { echo "Failed to install Java"; exit 1; }
 
+
     echo "Java installation completed."
 fi
 
@@ -30,6 +31,7 @@ if [ -d "$NEXUS_DIR" ]; then
     echo "Nexus is already installed. Skipping download and setup."     
 else
     echo "Nexus is not installed. Proceeding with download and setup."  
+
 
     # Download Nexus
     echo "Downloading Nexus"
@@ -75,6 +77,7 @@ WantedBy=multi-user.target" | sudo tee /etc/systemd/system/nexus.service > /dev/
 echo "Starting and Enabling Nexus Service"
 # sudo systemctl daemon-reload || { echo "Failed to reload systemd"; exit 1; }
 # sudo systemctl start nexus || { echo "Failed to start Nexus"; exit 1; }
+
 # sudo systemctl enable nexus || { echo "Failed to enable Nexus"; exit 1; }
 sh ~/nexus/bin/nexus start || { echo "Failed to start Nexus"; exit 1; }   
 
