@@ -4,7 +4,7 @@ echo "Updating system packages"
 sudo yum update -y || { echo "Failed to update packages"; exit 1; }     
 
 echo "Installing Java"
-wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+#wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
 if command -v java &> /dev/null; then
     echo "Java is already installed. Skipping download and setup."      
 else
