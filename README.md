@@ -79,7 +79,7 @@ sudo /opt/nexus/bin/nexus status
 sudo /opt/nexus/bin/nexus stop
 
 **To start the Nexus again:**
-sudo /opt/nexus/bin/nexus start
+rerun the script
 
 If the service is active, ensure **port 8081** is open in your security group. You can then access Nexus in your web browser at:
 
