@@ -4,14 +4,25 @@ echo "Updating system packages"
 sudo apt update -y || { echo "Failed to update packages"; exit 1; }     
 
 echo "Installing Java"
-wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+#wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
 if command -v java &> /dev/null; then
     echo "Java is already installed. Skipping download and setup."      
 else
     echo "Java is not installed. Proceeding with download and setup."   
 
     # Download Java
-    sudo apt install java-1.8.0-openjdk -y || { echo "Failed to install Java"; exit 1; }
+    sudo apt install openjdk-8-jdk -y || { echo "Failed to install Java"; exit 1; }
+
+    # Check if multiple versions of Java are installed
+    JAVA_VERSIONS=$(update-alternatives --list java | wc -l)
+
+    if [ "$JAVA_VERSIONS" -gt 1 ]; then
+        echo "Multiple Java versions found. Setting default... Select the number that corresponds to Java 8"
+        sudo update-alternatives --config java
+    else
+        echo "Only one Java version is installed. No configuration needed."
+    fi
+
 
 
     echo "Java installation completed."
@@ -112,6 +123,9 @@ WantedBy=multi-user.target" | sudo tee /etc/systemd/system/nexus.service > /dev/
 
 echo "Starting and Enabling Nexus Service"
 sudo chmod +x /opt/nexus/bin/nexus
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:/bin/java::")
+export INSTALL4J_JAVA_HOME=$JAVA_HOME
+
 sh /opt/nexus/bin/nexus start || { echo "Failed to start Nexus"; exit 1; }   
 
 echo "Nexus installation and setup completed successfully!"
