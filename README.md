@@ -69,11 +69,17 @@ sudo ./Nexus-Installation-Bash-Script/Ubuntu.sh
 If you have more than one Java version installed on your Ubuntu OS, 
 you will be required to select a version to use, **Select the version that 
 corresponds to Java 8** as this is the version required for Nexus to run effectively.
+
 **Post-Installation**
 
-After installation, verify that Nexus is running by checking its status:
-
+After installation, **verify that Nexus is running** by checking its status:
 sudo /opt/nexus/bin/nexus status
+
+**To stop the Nexus:**
+sudo /opt/nexus/bin/nexus stop
+
+**To start the Nexus again:**
+sudo /opt/nexus/bin/nexus start
 
 If the service is active, ensure **port 8081** is open in your security group. You can then access Nexus in your web browser at:
 
