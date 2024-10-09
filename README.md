@@ -65,6 +65,7 @@ sudo ./Nexus-Installation-Bash-Script/Amazon_Linux.sh
 - **Ubuntu (Vagrant VM)**:
 
 sudo ./Nexus-Installation-Bash-Script/Ubuntu.sh
+
 If you have more than one Java version installed on your Ubuntu OS, 
 you will be required to select a version to use, **Select the version that 
 corresponds to Java 8** as this is the version required for Nexus to run effectively.
