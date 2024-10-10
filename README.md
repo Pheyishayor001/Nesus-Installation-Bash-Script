@@ -74,10 +74,10 @@ corresponds to Java 8** as this is the version required for Nexus to run effecti
 
 After installation, **verify that Nexus is running** by checking its status:
 
-sudo /opt/nexus/bin/nexus status
+sudo systemctl status nexus
 
 **To stop the Nexus:**
-sudo /opt/nexus/bin/nexus stop
+sudo systemctl stop nexus
 
 **To start the Nexus again:**
 rerun the script
