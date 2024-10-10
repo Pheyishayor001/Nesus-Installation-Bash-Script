@@ -102,6 +102,8 @@ After=network.target
 
 [Service]
 Type=forking
+User=nexus
+Group=nexus
 ExecStart=/opt/nexus/bin/nexus start
 ExecStop=/opt/nexus/bin/nexus stop
 User=nexus
@@ -112,6 +114,12 @@ WantedBy=multi-user.target" | sudo tee /etc/systemd/system/nexus.service > /dev/
 
 echo "Starting and Enabling Nexus Service"
 sudo chmod +x /opt/nexus/bin/nexus
-sh /opt/nexus/bin/nexus start || { echo "Failed to start Nexus"; exit 1; }   
+#sh /opt/nexus/bin/nexus start || { echo "Failed to start Nexus"; exit 1; }   
+
+sudo systemctl enable nexus || { echo "Failed to enable Nexus"; exit 1; }
+sudo systemctl start nexus || { echo "Failed to start Nexus"; exit 1; }       
+
+echo "Checking Nexus status"
+sudo systemctl status nexus || { echo "Failed to check Nexus status"; exit 1; }
 
 echo "Nexus installation and setup completed successfully!"
