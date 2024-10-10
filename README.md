@@ -94,5 +94,5 @@ If Nexus is active when you check the status, but it still doesn't load on your 
 You can run the prompt below to watch/observe the startup process:
 sudo tail -f /opt/sonatype-work/nexus3/log/nexus.log
 
-This behaviour was observed on Vagrant Ubuntu VMs.
+This behaviour was observed on Vagrant (Ubuntu) VMs.
 
