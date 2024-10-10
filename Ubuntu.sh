@@ -113,6 +113,8 @@ After=network.target
 
 [Service]
 Type=forking
+User=nexus
+Group=nexus
 ExecStart=/opt/nexus/bin/nexus start
 ExecStop=/opt/nexus/bin/nexus stop
 User=nexus
@@ -126,6 +128,11 @@ sudo chmod +x /opt/nexus/bin/nexus
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:/bin/java::")
 export INSTALL4J_JAVA_HOME=$JAVA_HOME
 
-sh /opt/nexus/bin/nexus start || { echo "Failed to start Nexus"; exit 1; }   
+
+sudo systemctl enable nexus || { echo "Failed to enable Nexus"; exit 1; }   
+sudo systemctl start nexus || { echo "Failed to start Nexus"; exit 1; }
+
+echo "Checking Nexus status"
+sudo systemctl status nexus || { echo "Failed to check Nexus status"; exit 1; }
 
 echo "Nexus installation and setup completed successfully!"
