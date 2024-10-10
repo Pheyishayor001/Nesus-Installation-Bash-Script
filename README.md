@@ -88,3 +88,11 @@ rerun the script
 If the service is active, ensure **port 8081** is open in your security group. You can then access Nexus in your web browser at:
 
 - **Public IP**: YourPublicIP:8081
+
+**NOTE**
+If Nexus is active when you check the status, but it still doesn't load on your browser when you listen on port :8081, this might be because nexus is still loading in the background. 
+You can run the prompt below to watch/observe the startup process:
+sudo tail -f /opt/sonatype-work/nexus3/log/nexus.log
+
+This behaviour was observed on Vagrant Ubuntu VMs.
+
