@@ -72,7 +72,8 @@ corresponds to Java 8** as this is the version required for Nexus to run effecti
 
 **Post-Installation**
 
-After installation, **verify that Nexus is running** by checking its status:
+After installation Nexus status will be rendered. Use Ctrl C to exit the screen.
+to the prompt to check nexus status is:
 
 sudo systemctl status nexus
 
