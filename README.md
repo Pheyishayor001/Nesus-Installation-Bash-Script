@@ -9,6 +9,8 @@ This repository contains a Bash script to automate the installation of **Nexus R
    - **AMI**: Amazon Linux 2
 2. **Vagrant VM**:
    - Ensure you have **Ubuntu** as the OS.
+   - memory: 4096
+   - CPU: 2
 
 **Installation Instructions**
 
